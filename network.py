@@ -52,7 +52,10 @@ def make_request_for_car(car_id):
         if isinstance(data, bytes):
             data = data.decode('utf8').replace("'", '"')
             data = json.loads(data)
-        name = data['results'][0]['parent_name'] or data['results'][0]['name_en'] or data['results'][0]['name_ru']
+        parent_name = data['results'][0].get('parent_name', None)
+        name_ru = data['results'][0].get('name_ru', None)
+        name_en = data['results'][0].get('name_en', None)
+        name = parent_name if parent_name else name_ru if name_ru else name_en
         return name
     else:
         return None

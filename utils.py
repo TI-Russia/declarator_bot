@@ -98,8 +98,8 @@ def parse_person_answer(data):
         last_year = all_years[-1]
         year = last_year.get('main', {}).get('year', 0)
         name = last_year.get('main', {}).get('person', {}).get('name', None)
-        result.append("%s\n%s\n" % (last_year['main']['office']
-                                    ['post'], last_year['main']['office']['name']))
+        result.append("%s\n%s\n" % (last_year['position_ru']
+                                    , last_year['main']['office']['name']))
 
         incomes = last_year['incomes']
         if incomes:
